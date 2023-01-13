@@ -13,6 +13,8 @@ Once in this page, open the console to see the result.
 
 
 ### `npm test`
+Run all tests
 
+### `npm test:watch`
 Launches the test runner in the interactive watch mode.
 In this way, any test that you write under the `src/__tests__` folder will be executed and showed in the terminal console.
