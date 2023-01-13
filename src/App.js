@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react';
+import Letter from './Letter';
 
 function App() {
+  const [data, setData] = useState();
+  const [isDataReady, setIsDataReady] = useState(false)
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const myLetter = new Letter();
+        const LetterObject = await myLetter.get();
+        setData(LetterObject);
+      } catch (e) {
+        setData("There were something wrong with the fetch")
+      }
+      setIsDataReady(true);
+    }
+    getData();
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>Open the browser console to see the expected output</p>
+      {isDataReady && console.log(data)}
     </div>
   );
 }
